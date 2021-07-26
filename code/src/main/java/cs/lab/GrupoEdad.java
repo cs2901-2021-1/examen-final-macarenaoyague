@@ -2,11 +2,11 @@ package cs.lab;
 
 public class GrupoEdad {
 
-    public int inicioRango;
-    public int finalRango;
-    public int cobertura;
-    public int vacunadosTotalmente;
-    public int vacunadosParcialmente;
+    private int inicioRango;
+    private int finalRango;
+    private int cobertura;
+    private int vacunadosTotalmente;
+    private int vacunadosParcialmente;
 
     GrupoEdad(int inicioRango, int finalRango, int cobertura) {
         this.inicioRango = inicioRango;
@@ -41,5 +41,13 @@ public class GrupoEdad {
 
     public int getVacunadosParcialmente(){
         return vacunadosParcialmente;
+    }
+
+    public int getInicioRango(){
+        return inicioRango;
+    }
+
+    public int getFinalRango(){
+        return finalRango;
     }
 }

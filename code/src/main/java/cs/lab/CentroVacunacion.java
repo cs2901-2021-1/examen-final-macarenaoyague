@@ -2,7 +2,7 @@ package cs.lab;
 
 public class CentroVacunacion {
 
-    public String nombre;
+    private String nombre;
     boolean deBaja;
 
     CentroVacunacion(String nombre){
@@ -26,6 +26,10 @@ public class CentroVacunacion {
         var vacunacion = Vacunacion.getInstance();
         vacunacion.segundaDosis(inicioRango, finRango, cantidadPersonas);
         return true;
+    }
+
+    public String getNombre(){
+        return nombre;
     }
 
 }

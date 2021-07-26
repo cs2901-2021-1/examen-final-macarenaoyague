@@ -5,17 +5,36 @@ import java.util.List;
 
 public class Vacunacion {
 
-    public static final int cobertura = 22935533;
+    private static int cobertura;
     private static Vacunacion singleton = null;
 
     public static synchronized Vacunacion getInstance () {
-        if (singleton == null)
+        if (singleton == null) {
+            cobertura = 22935533;
             singleton = new Vacunacion();
+        }
         return singleton;
     }
 
     List<GrupoEdad> grupos = new ArrayList<>();
     List<CentroVacunacion> centros = new ArrayList<>();
+    List<Usuario> usuarios = new ArrayList<>();
+
+    public boolean login(String usuario, String contrasena){
+        var user = new Usuario(usuario);
+        if (user.validarContrasena(contrasena)) {
+            usuarios.add(user);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean logout(String usuario){
+        var user = buscarUsuario(usuario);
+        if (user == null) return false;
+        usuarios.remove(user);
+        return true;
+    }
 
     public void agregarGrupo(int inicioRango, int finalRango, int cobertura) {
         grupos.add(new GrupoEdad (inicioRango, finalRango, cobertura));
@@ -34,15 +53,22 @@ public class Vacunacion {
 
     private GrupoEdad buscarGrupo(int inicioRango, int finRango){
         for (GrupoEdad grupo : grupos)
-            if (grupo.inicioRango == inicioRango && grupo.finalRango == finRango)
+            if (grupo.getInicioRango() == inicioRango && grupo.getFinalRango() == finRango)
                 return grupo;
         return null;
     }
 
     private CentroVacunacion buscarCentro(String nombre){
         for (CentroVacunacion centro : centros)
-            if (centro.nombre.equals(nombre))
+            if (centro.getNombre().equals(nombre))
                 return centro;
+        return null;
+    }
+
+    private Usuario buscarUsuario(String nombre){
+        for (Usuario usuario : usuarios)
+            if (usuario.getNombre().equals(nombre))
+                return usuario;
         return null;
     }
 

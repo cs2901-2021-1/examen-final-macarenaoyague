@@ -25,6 +25,24 @@ class Tester {
     }
 
     @Test
+    public void login() {
+        var v = Vacunacion.getInstance();
+        var exito = v.login("macarena", "aneracam");
+        Assert.assertTrue(exito);
+        exito = v.login("valeria", "valeria");
+        Assert.assertFalse(exito);
+    }
+
+    @Test
+    public void logout() {
+        var v = Vacunacion.getInstance();
+        var exito = v.logout("macarena");
+        Assert.assertTrue(exito);
+        exito = v.logout("valeria");
+        Assert.assertFalse(exito);
+    }
+
+    @Test
     public void avance() {
         var v = Vacunacion.getInstance();
         var parcial = v.avanceParcialVacunacion();

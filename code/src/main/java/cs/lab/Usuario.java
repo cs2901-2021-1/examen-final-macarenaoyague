@@ -2,7 +2,7 @@ package cs.lab;
 
 public class Usuario {
 
-    public String nombre;
+    private String nombre;
     private final String contrasena;
 
     Usuario(String nombre) {
@@ -16,6 +16,8 @@ public class Usuario {
         return contrasena.equals(this.contrasena);
     }
 
-
+    public String getNombre(){
+        return nombre;
+    }
 
 }
